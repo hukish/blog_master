@@ -1,7 +1,9 @@
 {% macro displayquote(quote) %}
 
     {% for qoute in quote %}
-        <li>{{ quote.title}}</li>
-    {% endfor %}
+    <li class="text-center">
+        <a href="/quote/{{quote.id}}">
+            {{ quote.title|truncate(10)}}</a>
+    </li>
 
 {% endmacro %}
