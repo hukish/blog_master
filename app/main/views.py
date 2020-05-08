@@ -8,6 +8,8 @@ def index():
     '''
     View root page function that returns the index page and its data
     '''
+
+
     title =     title = 'Home - Welcome to The Quote review Website Online'
     return render_template('index.html',title = title)
 

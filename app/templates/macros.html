@@ -1,16 +1,7 @@
-{% macro ist(source_list) %}
-<div class = "container">
-{% for source in source_list %}
-<div class = "row">
-    <div class = "col-md-6">
+{% macro displayquote(quote) %}
 
-    <h4 style="font-family: 'Permanent Marker', cursive; font-size: 150%;">{{source.name}}</h4>
-    <p>{{source.description | truncate(50)}}</p>
-    <a href="/source/{{source.id}}" class="btn btn-success" target="_blank">{{source.name}}</a><br><br>
-  </div>
+    {% for qoute in quote %}
+        <li>{{ quote.title}}</li>
+    {% endfor %}
 
-</div>
-  {% endfor %}
-
-</div>
 {% endmacro %}

@@ -8,7 +8,9 @@ def configure_request(app):
     global base_url
     base_url = app.config['QUOTE_API_BASE_URL']
 
-def get_quotes():
+def get_quotes(category):
+
+    get_quotes_url = base_url.format(category,api_key)
    
     with urllib.request.urlopen(base_url) as url:
 
