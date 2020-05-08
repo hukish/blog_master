@@ -1,1 +1,19 @@
-<h1> Hello quote {{ id }} </h1>
+{% extends 'base.html'%}
+<!-- Content block -->
+{% block content %}
+<div class="container">
+
+    <!-- Poster background -->
+    <div class="row">
+      
+
+        <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 movie-details">
+            <h3>{{ quote.title }}</h3>
+
+            
+
+        </div>
+    </div>
+
+
+{% endblock %}
