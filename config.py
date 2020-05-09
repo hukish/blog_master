@@ -4,7 +4,7 @@ class Config:
     General configuration parent class
     '''
 
-    SECRET_KEY = os.environ.get('SECRET_KEY')
+    SECRET_KEY = ('1234')
     QUOTE_API_BASE_URL = 'http://quotes.stormconsultancy.co.uk/random.json'
   
     QUOTE_API_BASE_URL = os.environ.get('QUOTE_API_BASE_URL')
