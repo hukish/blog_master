@@ -9,7 +9,7 @@ class Config:
   
     QUOTE_API_BASE_URL = os.environ.get('QUOTE_API_BASE_URL')
     SQLALCHEMY_DATABASE_URI = 'postgresql+psycopg2://hudson:1234@localhost/mblog'
-
+    UPLOADED_PHOTOS_DEST ='app/static/photos'
    
 class ProdConfig(Config):
     '''
