@@ -8,7 +8,7 @@ base_url = None
 
 def configure_request(app):
     global base_url
-    api_key = app.config['QUOTE_API']
+    #api = app.config['QUOTE_API']
     base_url = app.config['QUOTE_API_BASE_URL']
 
 def get_quotes(category):
