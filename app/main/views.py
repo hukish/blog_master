@@ -1,6 +1,7 @@
 from flask import render_template,request,redirect,url_for
 from . import main
 from ..requests import get_quotes
+from flask_login import login_required
 
 @main.route('/')
 def index():
@@ -14,7 +15,8 @@ def index():
     return render_template('index.html',title = title)
 
 
-@main.route('/quote/<int:id>')
+@main.route('/quote/<int:id>', methods = ['GET','POST'])
+@login_required
 def quote(quote_id):
 
     '''
