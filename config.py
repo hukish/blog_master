@@ -8,7 +8,7 @@ class Config:
     QUOTE_API_BASE_URL = 'http://quotes.stormconsultancy.co.uk/random.json'
   
     QUOTE_API_BASE_URL = os.environ.get('QUOTE_API_BASE_URL')
-    SQLALCHEMY_DATABASE_URI = 'postgresql+psycopg2://hukish:1234@localhost/mblog'
+    SQLALCHEMY_DATABASE_URI = 'postgresql+psycopg2://hudson:1234@localhost/mblog'
 
    
 class ProdConfig(Config):
