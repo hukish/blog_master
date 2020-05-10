@@ -2,6 +2,7 @@ from . import db
 from werkzeug.security import generate_password_hash,check_password_hash
 from flask_login import UserMixin
 from . import login_manager
+from datetime import datetime
 
 
 @login_manager.user_loader
@@ -14,7 +15,7 @@ class User(UserMixin,db.Model):
     id = db.Column(db.Integer,primary_key = True)
     username = db.Column(db.String(255))
     email = db.Column(db.String(255),unique = True,index = True)
-    role_id = db.Column(db.Integer,db.ForeignKey('roles.id'))
+    
     bio = db.Column(db.String(255))
     profile_pic_path = db.Column(db.String())
     password_hash = db.Column(db.String(255))
@@ -42,70 +43,116 @@ class User(UserMixin,db.Model):
 
 
 
-class Role(db.Model):
-    __tablename__ = 'roles'
 
-    id = db.Column(db.Integer,primary_key = True)
+@login_manager.user_loader
+def load_user(user_id):
+    return User.query.get(int(user_id))
+
+class Blog(db.Model):
+    """ 
+    List ofs in each category
+    """
+    __tablename__ = 'blogs'
+    __table_args__ = {'extend_existing': True}
+
+    id = db.Column(db.Integer, primary_key=True)
+    user_id = db.Column(db.Integer, db.ForeignKey("users.id"))
+    title = db.Column(db.String(255))
+    comment_id = db.relationship("Comments", backref="blog", lazy="dynamic")
+    category_id = db.Column(db.Integer,db.ForeignKey('categories.id'))
+
+    def save_blog(self):
+        '''
+         Save the blogs 
+        '''
+        db.session.add(self)
+        db.session.commit()
+
+      
+class Review(db.Model):
+
+    __tablename__ = 'reviews'
+
+    id = db.Column(db.Integer, primary_key=True)
+    blog_id = db.Column(db.Integer, db.ForeignKey("blogs.id"))
+    blog_review = db.Column(db.String)
+    posted = db.Column(db.DateTime, default=datetime.utcnow)
+    user_id = db.Column(db.Integer, db.ForeignKey("users.id"))
+
+    def save_review(self):
+        db.session.add(self)
+        db.session.commit()
+
+    @classmethod
+    def get_reviews(cls, id):
+        reviews_data = Review.query.filter_by(blog_id=id).all()
+        return reviews_data
+
+
+class Comments(db.Model):
+    '''
+    comment class.
+    '''
+
+    __tablename__ = 'comments'
+
+    # add columns
+    id = db.Column(db. Integer, primary_key=True)
+    feedback = db.Column(db.String(255))
+    posted = db.Column(db.DateTime, default=datetime.utcnow)
+    user_id = db.Column(db.Integer, db.ForeignKey("users.id"))
+    blogs_id = db.Column(db.Integer, db.ForeignKey("blogs.id"))
+
+    def save_comment(self):
+        '''
+        Save the Comments/comments per blog
+        '''
+        db.session.add(self)
+        db.session.commit()
+
+    def delete_comment(self):
+        db.session.delete(self)
+        db.session.commit()
+
+
+    @classmethod
+    def get_comments(self, id):
+        comment = Comments.query.order_by(
+            Comments.time_posted.desc()).filter_by(blogs_id=id).all()
+        return comment
+
+
+class Category(db.Model):
+
+    __tablename__ = 'categories'
+
+    # table columns
+    id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(255))
-    users = db.relationship('User',backref = 'role',lazy="dynamic")
 
+    # save blogs
+    def save_category(self):
+        db.session.add(self)
+        db.session.commit()
 
-    def __repr__(self):
-        return f'User {self.name}'
-
-
-
-
-
-
-
-
+    @classmethod
+    def get_categories(cls):
+        categories = Category.query.all()
+        return categories
 
 
 
 
 
+class Subscriber(db.Model):
+    __tablename__='subscribers'
 
+    id=db.Column(db.Integer,primary_key=True)
+    email = db.Column(db.String(255),unique=True,index=True)
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    def save_subscriber(self):
+        db.session.add(self)
+        db.session.commit()
 
 
 

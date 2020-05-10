@@ -1,24 +1,70 @@
-{% extends 'base.html'%}
-<!-- Styles block -->
 
-{% block styles%}
-    {{ super() }}
-    <link rel="stylesheet" href="{{url_for('static',filename='css/index.css')}}">
-{% endblock %}
-<!-- Content block -->
 <!DOCTYPE html>
+<html lang="en">
+  <head>
+      {% extends 'base.html'%}
+      {% import 'macros.html' as macro%}
+  
+  {% block styles%}
+  {{ super() }}
+  <link href="https://fonts.googleapis.com/css?family=Advent+Pro&display=swap" rel="stylesheet">
+  {% endblock %}
+  {% block content %}
+  
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+</head>
+<body style="overflow-x: hidden">
+  <main style="font-family: 'Advent Pro'">
+  <div style="display: flex;justify-content: center; margin-top: 3rem" class="text-center">
+  <h2 style="text-align: center;font-family: 'Luckiest Guy', cursive; letter-spacing: 4px; font-size: 3.5em; font-weight: bolder">W<span style="color: crimson">E</span>LCOM<span style="color: crimson">E</span></h2>
+</div>
+ 
+     
+    <div style="font-family:'Advent Pro';font-size: larger" class="container">
+       
+      <div class="row">
+        <div class="col-md-8 col-md-offset-2">
+        {% if current_user.is_authenticated%}
 
-<html>
-    <head>
-        <meta charset="utf-8">
-        {% if title %}
-        <title> {{ title }}</title>
+          
+          <h2><u>Welcome {{ current_user.username }}</u></h2>
+        
+
+        <h2>Getting started:</h2>
+            <ol>
+                <li>View all blogs ideas in our blog page</li>
+                <li>To get access to comment sign up if knew to this site</li>
+                <li>you can login and logout from your accouunst</li>
+                
+            </ol>
+
         {% else %}
-        <title> My blog</title>
-        {% endif %}
-    </head>
-    <body>
+
+        {%endif%}
+                {%if current_user.is_authenticated%}
+                <h4 class="text-left"><a class="btn btn-success" href="{{url_for('main.new_blog')}}"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span>Post Blog</a></h4>
+                {% endif %}
+          {{ macro.displayCategoryList(categories) }}
+        </div>
+        <div class="wells" s>
+        {{ macro.displayBlogs(blogs) }}
+
+        </div>
+
        
 
-    </body>
-</html>
+
+    </div>
+</div>
+<div class="col-md-4 ">
+  <div class="panel" id="subcribeform">
+    <div class="panel-body">
+      <h4>Subscribe to our Blog</h4>
+ 
+      {{simplemde.load}}
+    </div>
+  </div>
+</div>
+{% endblock %} 

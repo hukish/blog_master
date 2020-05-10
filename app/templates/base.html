@@ -11,6 +11,8 @@
   {{super()}}
   <link rel="stylesheet" type="text/css" href="{{url_for('static',filename='css/styles.css')}}">
   <link href="https://fonts.googleapis.com/css?family=Advent+Pro|Luckiest+Guy&display=swap" rel="stylesheet">
-  
+  <!--Importing the simple mde css and js files  -->
+  {{ simplemde.css}}
+  {{ simplemde.js }}
 
 {% endblock %}
