@@ -54,3 +54,30 @@ After extracting the files,
 * As a writer, I would also like to create a blog from the application.
 * As a writer, I would like to delete comments that I find insulting or degrading.
 * As a writer, I would like to update or delete blog
+
+
+
+## BDD(Behaviour Driven Development)
+>Login Inputs
+
+| Inputs |  Description |
+| :---         |          ---: |
+| Username  | Account username, ``|
+| Password  | Account password, ``|
+
+>Signup inputs
+
+| Inputs |  Description |
+| :---         |          ---: |
+| Username  | Account username, ``|
+| Email  | User email, ``|
+| Password  | Account password, ``|
+| Confirm Password  | Account password, ``|
+
+> Blog inputs
+
+| Inputs | Description  |
+|---|---|
+|  Blog title | the title of the blog eg; ``  news``  |
+|  Blog post| The blog post itself|
+| Comment| A comment on the blog post|
