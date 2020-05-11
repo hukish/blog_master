@@ -81,3 +81,10 @@ After extracting the files,
 |  Blog title | the title of the blog eg; ``  news``  |
 |  Blog post| The blog post itself|
 | Comment| A comment on the blog post|
+
+
+## License
+> MIT License &copy; 2020 Hudson
+
+## Collaborate
+To collaborate, reach me on [hudsonhukish@gmail.com]()
