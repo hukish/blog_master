@@ -4,22 +4,20 @@ from . import main
 from .forms import UpdateProfile, ReviewForm, BlogForm, CategoryForm, CommentForm
 from flask_login import login_required, current_user
 from ..models import Review, User, Blog, Category, Comments
-from ..requests import get_quotes
+from app.requests import getQuotes
 
 @main.route('/')
+@main.route('/home')
 def index():
-    '''
-    View function to route to index page
-    '''
+ 
+   
 
-    #Getting popular movi
-    title = 'Home'
+    quotes = getQuotes()
     allBlogs = Blog.query.all()
     reviewz = Review.query.all()
 
-    #quote = get_quotes()
-
-    return render_template('index.html', title=title, blogs=allBlogs, reviewz=reviewz)
+  
+    return render_template('index.html',quotes=quotes,blogs=allBlogs, reviewz=reviewz)
 
 
 @main.route('/user/<uname>')

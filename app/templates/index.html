@@ -20,7 +20,15 @@
   <div style="display: flex;justify-content: center; margin-top: 3rem" class="text-center">
   <h2 style="text-align: center;font-family: 'Luckiest Guy', cursive; letter-spacing: 4px; font-size: 3.5em; font-weight: bolder">W<span style="color: crimson">E</span>LCOM<span style="color: crimson">E</span></h2>
 </div>
- 
+  <div class="row">
+    <div class="col-md-8 col-md-offset-2">
+      {% for item in quote%}
+      <h3 class="text-center">" {{item.quote}} "</h3>
+      <p class="text-center"> ~ {{item.author}}</p>
+      {% endfor %}
+    </div>
+
+  </div>
      
     <div style="font-family:'Advent Pro';font-size: larger" class="container">
        
@@ -32,15 +40,11 @@
           <h2><u>Welcome {{ current_user.username }}</u></h2>
         
 
-        <h2>Getting started:</h2>
-            <ol>
-                <li>View all blogs ideas in our blog page</li>
-                <li>To get access to comment sign up if knew to this site</li>
-                <li>you can login and logout from your accouunst</li>
-                
-            </ol>
+        <h2>"Always remember that you are absolutely unique. Just like everyone else." -Margaret Mead</h2>
+        
 
         {% else %}
+
 
         {%endif%}
                 {%if current_user.is_authenticated%}
@@ -52,19 +56,9 @@
         {{ macro.displayBlogs(blogs) }}
 
         </div>
-
-       
-
-
+<!-- {% endblock %} -->
     </div>
 </div>
-<div class="col-md-4 ">
-  <div class="panel" id="subcribeform">
-    <div class="panel-body">
-      <h4>Subscribe to our Blog</h4>
- 
-      {{simplemde.load}}
-    </div>
-  </div>
-</div>
-{% endblock %} 
+</main>
+</body>
+</html>
