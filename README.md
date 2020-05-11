@@ -1,2 +1,14 @@
 # Blog-
 Blog is a personal blogging website where you can create and share your opinions and other users can read and comment on them. 
+
+
+## Author
+> Hudson Kishoyian
+
+
+
+
+## Requirements
+
+The following command installs all the application requirements
+>``pip freeze -r requirements.txt``
